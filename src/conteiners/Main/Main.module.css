@@ -1,0 +1,27 @@
+.Main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.Container{
+    background-color: #fcb100;
+}
+.Main img{
+    margin: 0 auto;
+}
+.Main .Description{
+    width: 960px;
+    margin: 0 auto;
+}
+
+.Main .Description .DescriptionP1{
+    text-align: center;
+    font-size: 22px;
+}
+.Main .Description .DescriptionP2{
+    text-align: justify;
+    width: 580px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}

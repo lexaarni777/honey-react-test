@@ -1,0 +1,18 @@
+.Input{
+    color: #3b312f;
+    margin: 0 auto;
+    width: 200px;
+    margin-bottom: 16px;
+}
+
+.Input input{
+    width: 100%;
+    padding: 3px;
+    border: 2px solid #3b312f;
+    border-radius: 5px;
+}
+.Input span{
+    position: absolute;
+    font-size: 14px;
+    color: rgb(255, 60, 0);
+}

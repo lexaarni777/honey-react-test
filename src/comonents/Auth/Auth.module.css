@@ -1,0 +1,37 @@
+.Auth{
+    width: 420px;
+    height: 400px;
+    border: 3px solid  #3b312f;
+    background-color: #fcb100;
+    position: fixed;
+    left: 50%;
+    margin-left: -210px;
+    top: 50%;
+    margin-top: -200px;
+    z-index: 100;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    
+    flex-direction: column;
+}
+.Auth p{
+    text-align: center;
+    color:#3b312f;
+    font-size: 24px;
+    margin: 0;
+}
+.Auth a{
+    margin: 0 auto;
+}
+.Auth a img{
+    border: 2px solid #3b312f;
+    border-radius: 25px;
+}
+.OpenAuth{
+    visibility: visible;
+    
+}
+.CloseAuth{
+    visibility: hidden;
+}

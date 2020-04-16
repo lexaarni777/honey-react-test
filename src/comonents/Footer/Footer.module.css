@@ -1,0 +1,46 @@
+.Footer{
+    height: 80px;
+    background-color: #3b312f;
+    color: white;
+}
+.Footer .Conteiner{
+    max-width: 1280px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.FooterLeft,
+.FooterCenter,
+.FooterRight{
+    min-width: 250px;
+}
+.FooterCenter p{
+    text-align: center;
+}
+.FooterLeft,
+.FooterRight{
+    display: flex;
+    align-items: center;
+}
+.Footer p{
+    margin: 0;
+}
+.FooterLeft{
+    height: 50px;
+}
+.FooterLeft a{
+    height: 100%;
+    margin-right: 15px;
+}
+.FooterRight{
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+.FooterRight a{
+    height: 100%;
+    margin-left: 15px;
+}

@@ -1,0 +1,45 @@
+.Articles{
+    height: 100%;
+    margin: 0 auto;
+}
+.Articles .Conteiner{
+    width: 960px
+}
+.Articles .Conteiner .Link{
+    
+}
+
+.Articles .Conteiner .ArticlesList ul{
+    margin: 0;
+    padding: 0;    
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Articles .Conteiner .ArticlesList ul li{
+    width: 240px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.Articles .Conteiner .ArticlesList ul li a{
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.Articles .Conteiner .ArticlesList ul li a{
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border-bottom: 3px solid white;
+}
+
+.Articles .Conteiner .ProductsList ul li a:hover{
+    color: #fcb100;
+    border-bottom: 3px solid #fcb100;
+    transition: .4s ease-in;
+}
