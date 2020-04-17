@@ -12,7 +12,7 @@ import Articles from './conteiners/Articles/Articles';
 import Contact from './conteiners/Contact/Contact';
 import Add from './conteiners/Add/Add';
 import AddArticles from './conteiners/AddArticles/AddArticles';
-import ActiveArticle from './conteiners/'
+import ActiveArticle from './conteiners/ActiveArticle/ActiveArticle'
 
 
 function App() {

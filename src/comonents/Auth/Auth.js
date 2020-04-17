@@ -5,6 +5,7 @@ import Backdrop from '../Login/Backdrop/Backdrop'
 import {createControl, validate} from '../../form/formFramework'
 import Botton from '../UI/Button/Button'
 import {NavLink} from 'react-router-dom'
+import axios from 'axios'
 
 import imageLogo from '../Footer/logo.png'
 
@@ -12,7 +13,7 @@ import imageLogo from '../Footer/logo.png'
 function createFormControls() {
     return{
             email: createFormControlsOther('Email'),
-            login: createFormControlsOther('Пароль'),
+            password: createFormControlsOther('Пароль'),
     }
 };
 
@@ -26,13 +27,12 @@ function createFormControlsOther(label){
 class Auth extends Component {
 
     state = {
-        formControls: createFormControls()
+        formControls: createFormControls(),
     };
 
     changeHandler = (value, controlName) => {
         const formControls = {...this.state.formControls}
         const control = {...formControls[controlName]}
-
         control.touched = true
         control.value = value
         control.valid = validate(control.value, control.validation)
@@ -40,7 +40,7 @@ class Auth extends Component {
         formControls[controlName] = control
 
         this.setState({
-            formControls
+            formControls,
         })
     };
 
@@ -63,6 +63,50 @@ class Auth extends Component {
 
         })
     }
+
+    loginHendler = async () => {
+        const authData = {
+            email: this.state.formControls.email.value,
+            password: this.state.formControls.password.value,
+            returnSecureToken: true
+        }
+
+        try{
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA4Q5_de3gsjL9Y9cQPOArEqm-n7v7hcN8', authData)
+
+            console.log(response.data)
+
+            
+
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    registerHendler = async () => {
+        const authData = {
+            email: this.state.formControls.email.value,
+            password: this.state.formControls.password.value,
+            returnSecureToken: true
+        }
+        try{
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA4Q5_de3gsjL9Y9cQPOArEqm-n7v7hcN8', authData)
+
+            console.log(response.data)
+
+            this.setState({
+                formControls: createFormControls()
+            })
+        }catch(e){
+            console.log(e)
+        }
+        
+    }
+
+    submitHendler = event => {
+        event.preventDefault()
+    }
+
     render(){
 
             const cls = [classes.Auth]
@@ -80,8 +124,15 @@ class Auth extends Component {
                         <img src={imageLogo} width='50px' height='50px' alt='imageLogo'/>
                     </NavLink>
                     <p>Вход</p>
+                    <form onSubmit={this.submitHendler}>
                     {this.renderInputs()}
-                    <Botton>Войти</Botton>
+                    <Botton
+                        onClick={this.loginHendler}
+                        >Войти</Botton>
+                    <Botton
+                        onClick={this.registerHendler}
+                        >Регистрация</Botton>
+                    </form>
                 </div>
                 {this.props.isOpen
                     ?<Backdrop 
