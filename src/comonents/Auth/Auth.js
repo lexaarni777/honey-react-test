@@ -5,8 +5,8 @@ import Backdrop from '../Login/Backdrop/Backdrop'
 import {createControl, validate} from '../../form/formFramework'
 import Botton from '../UI/Button/Button'
 import {NavLink} from 'react-router-dom'
-import axios from 'axios'
-
+import {connect} from 'react-redux'
+import {auth} from '../../store/action/auth'
 import imageLogo from '../Footer/logo.png'
 
 
@@ -64,43 +64,37 @@ class Auth extends Component {
         })
     }
 
-    loginHendler = async () => {
-        const authData = {
-            email: this.state.formControls.email.value,
-            password: this.state.formControls.password.value,
-            returnSecureToken: true
-        }
+    loginHendler = () => {
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            true
+        )
+        // const authData = {
+        //     email: 
+        //     password: 
+        //     returnSecureToken: 
+        // }
 
-        try{
-            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA4Q5_de3gsjL9Y9cQPOArEqm-n7v7hcN8', authData)
+        // try{
+        //     const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=', authData)
 
-            console.log(response.data)
+        //     console.log(response.data)
 
             
 
-        }catch(e){
-            console.log(e)
-        }
+        // }catch(e){
+        //     console.log(e)
+        // }
     }
 
-    registerHendler = async () => {
-        const authData = {
-            email: this.state.formControls.email.value,
-            password: this.state.formControls.password.value,
-            returnSecureToken: true
-        }
-        try{
-            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA4Q5_de3gsjL9Y9cQPOArEqm-n7v7hcN8', authData)
-
-            console.log(response.data)
-
-            this.setState({
-                formControls: createFormControls()
-            })
-        }catch(e){
-            console.log(e)
-        }
-        
+    registerHendler = () => {
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            false
+        )
+    
     }
 
     submitHendler = event => {
@@ -146,4 +140,11 @@ class Auth extends Component {
     
 }
 
-export default Auth
+
+function mapDispatchToProps(dispatch){
+    return{
+        auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Auth)
