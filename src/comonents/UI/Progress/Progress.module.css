@@ -1,0 +1,18 @@
+.Progress{
+        
+       
+}
+.displayOff{
+    display: none
+}
+
+.displayOn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+
+}

@@ -4,6 +4,7 @@ import Input from '../../comonents/UI/Input/Input'
 import axios from '../../axios/axios'
 import Button from '../../comonents/UI/Button/Button'
 import ImageUpload from '../../comonents/ImageUpload/ImageUpload'
+import classes from './Add.module.css'
 
 
 function createFormControlsOther(label){
@@ -19,7 +20,6 @@ function createFormControls() {
             name: createFormControlsOther('Наименование товара'),
             description: createFormControlsOther('Описание товара'),
             prise: createFormControlsOther('Стоимость'),
-            img: createFormControlsOther('Картинка')
     }
 };
 
@@ -30,11 +30,13 @@ class Add extends Component{
 
     state = {
         formControls: createFormControls(),
-        url: 'null'
+        url: 'null',
+        onDisplay: false,
+        valueName: ''
     };
     
     createProductHandler = event => {
-        event.preventDefault()        
+               
         const formControls = {...this.state.formControls}
         const urlImage = this.state.url
         console.log(urlImage)
@@ -49,11 +51,15 @@ class Add extends Component{
         .then(() => {
             this.setState({
                 formControls: createFormControls(),
-                url: 'null'
+                url: 'null',
+                onDisplay: false,
+                valueName: ''
             })
+            event.preventDefault(true)  
         })
         .catch(error => console.log(error))
 
+        
         
     };
 
@@ -61,7 +67,12 @@ class Add extends Component{
         this.setState({
             url: event
         })
-        console.log(this.state)
+    }
+
+    onValueName = event =>{
+        this.setState({
+            valueName: event
+        })
     }
 
     submitHandler = event => {
@@ -103,11 +114,16 @@ class Add extends Component{
         })
     };
 
+    onDisplay = () => {
+        this.setState({
+            onDisplay: true
+        })
+    }
 
     render(){
         return(
-            <div>
-                <div>
+            <div className={classes.Add}>
+                <div className={classes.Conteiner}>
                     <h1>Добавление товара</h1>
 
                     <form onSubmit={this.submitHandler}>
@@ -117,11 +133,13 @@ class Add extends Component{
                         <ImageUpload
                             name = {this.state.formControls.name.value}
                             onChange = {this.createUrl}
-
+                            onDisplay = {this.onDisplay}
+                            isDisplay = {this.state.onDisplay}
+                            valueName = {this.state.valueName}
+                            onValueName = {this.onValueName}
                         />
                         <Button 
-                            onClick={this.createProductHandler}
-                            url={this.props.children}>
+                            onClick={this.createProductHandler}>
                             Добавить
                         </Button>
                     </form>

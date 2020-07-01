@@ -1,10 +1,25 @@
-.fileInput{
-  border-bottom: 4px solid lightgray;
-  border-right: 4px solid lightgray;
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  padding: 10px;
-  margin: 15px;
-  cursor: pointer;
+.ImageUpload{
+    display: flex;
+    flex-direction: column;
 }
-  
+.input{
+    display: none;
+}
+span{
+    display: inline-block;
+    padding: 7px;
+    width: 150px;
+    margin-top: 5px;
+    background-color: #3b312f;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Upload{
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
