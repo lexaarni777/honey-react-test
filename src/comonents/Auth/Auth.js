@@ -68,24 +68,9 @@ class Auth extends Component {
         this.props.auth(
             this.state.formControls.email.value,
             this.state.formControls.password.value,
-            true
-        )
-        // const authData = {
-        //     email: 
-        //     password: 
-        //     returnSecureToken: 
-        // }
-
-        // try{
-        //     const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=', authData)
-
-        //     console.log(response.data)
-
-            
-
-        // }catch(e){
-        //     console.log(e)
-        // }
+            true,
+            this.props.onClose
+        )        
     }
 
     registerHendler = () => {
@@ -128,12 +113,14 @@ class Auth extends Component {
                         >Регистрация</Botton>
                     </form>
                 </div>
+                
                 {this.props.isOpen
                     ?<Backdrop 
                         onClick={this.props.onClose}
                     />
                     :null
                 }
+               
             </React.Fragment>
         )
     }
@@ -143,8 +130,10 @@ class Auth extends Component {
 
 function mapDispatchToProps(dispatch){
     return{
-        auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
+        auth: (email, password, isLogin, onClose) => dispatch(auth(email, password, isLogin, onClose))
     }
 }
+
+
 
 export default connect(null, mapDispatchToProps)(Auth)

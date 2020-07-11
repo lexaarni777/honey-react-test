@@ -37,7 +37,6 @@ class Add extends Component{
         
         axios.post('/articles.json', article)
         .then((response) => {
-            console.log(response)
             this.setState({
                 formControls: createFormControls()
             })

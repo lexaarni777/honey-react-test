@@ -3,6 +3,8 @@ import classes from './MenuBar.module.css';
 import {NavLink} from 'react-router-dom'
 import Auth from '../../../comonents/Auth/Auth'
 import Login from '../../../comonents/Login/Login'
+import {connect} from 'react-redux'
+import ExitLogin from '../../ExitLogin/ExitLogin'
 
 import imageLogo from '../../Footer/logo.png'
 
@@ -59,8 +61,15 @@ class MenuBar extends Component {
                                 />
                             <Login
                                 onLogin={this.onLoginAuthHandler}
-
+                                isAuthenticated={this.props.isAuthenticated}
                             />
+                            {this.props.isAuthenticated?
+                                <ExitLogin
+                                    isAuthenticated={this.props.isAuthenticated}>  
+                                </ExitLogin>
+                                :null
+                            }
+                            
                         </div>
                     </div>
                     <nav>
@@ -74,4 +83,10 @@ class MenuBar extends Component {
     };
 }
 
-export default MenuBar;
+function mapStateToProps(state){
+    return{
+        isAuthenticated: !!state.auth.token
+    }
+}
+
+export default connect(mapStateToProps)(MenuBar);

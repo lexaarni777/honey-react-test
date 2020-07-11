@@ -46,7 +46,6 @@ class Products extends Component{
                 products,
                 loading:false
             })
-            console.log(this.state.products)
         }catch(e){
             console.log(e)
         }

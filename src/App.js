@@ -3,6 +3,7 @@ import Layout from './hoc/Layout/Layout';
 import classes from './App.module.css';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux'
+import {autoLogin} from '../src/store/action/auth'
 
 import Main from '../src/conteiners/Main/Main'
 import About from './conteiners/About/About';
@@ -18,6 +19,11 @@ import Logout from './comonents/Logout/Logout';
 
 
 class App extends Component {
+
+componentDidMount(){
+  this.props.autoLogin()
+}
+ 
   render(){
 
     let routes = (
@@ -31,7 +37,6 @@ class App extends Component {
             <Route path='/contact' component={Contact}/>         
             <Route path='/about' component={About}/>
             <Route path='/' component={Main}/>
-            <Redirect to='/'/>
       </Switch>
     )
 
@@ -47,9 +52,8 @@ class App extends Component {
             <Route path='/articles/:id' component={ActiveArticle}/>
             <Route path='/contact' component={Contact}/>         
             <Route path='/about' component={About}/>
-            <Route path='/' component={Main}/>
             <Route path='/logout' component={Logout}/>
-            <Redirect to='/'/>
+            <Route path='/' component={Main}/>
         </Switch>
       )
     }
@@ -70,4 +74,10 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch){
+  return{
+    autoLogin: () => dispatch(autoLogin())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

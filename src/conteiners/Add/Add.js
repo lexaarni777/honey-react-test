@@ -39,7 +39,6 @@ class Add extends Component{
                
         const formControls = {...this.state.formControls}
         const urlImage = this.state.url
-        console.log(urlImage)
         const product = {
             name: formControls.name.value,
             description: formControls.description.value,

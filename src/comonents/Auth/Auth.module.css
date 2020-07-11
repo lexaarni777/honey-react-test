@@ -12,7 +12,6 @@
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    
     flex-direction: column;
 }
 .Auth p{
@@ -34,4 +33,12 @@
 }
 .CloseAuth{
     visibility: hidden;
+}
+.Auth form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+ }
+.Auth form div, .Auth form button{
+   margin: 5px auto;
 }

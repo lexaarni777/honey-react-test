@@ -43,7 +43,6 @@ class Articles extends Component{
                 articles,
                 loading:false
             })
-            console.log(this.state.articles)
         }catch(e){
             console.log(e)
         }

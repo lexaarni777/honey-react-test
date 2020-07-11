@@ -5,7 +5,6 @@ const Procress = props =>{
 
     const cls = [classes.displayOff]
 
-    console.log(props.isDisplay)
     if(props.isDisplay){
         cls.push(classes.displayOn)
     }else(

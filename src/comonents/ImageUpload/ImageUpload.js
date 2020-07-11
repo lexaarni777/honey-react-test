@@ -46,10 +46,6 @@ const ImageUpload = props => {
         )
     }
 
-    console.log('image: ', image)
-    console.log('props: ', props)
-
-
     return (
         <div className={classes.ImageUpload}>
             <label>
