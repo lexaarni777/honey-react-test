@@ -3,7 +3,7 @@ import classes from './Login.module.css'
 
 const Auth = props => {
     const cls = [classes.Login,
-    'fa fa-user']
+    'fa fa-sign-in']
     
     return(
         <i className={cls.join(' ')}

@@ -5,6 +5,7 @@ import Auth from '../../../comonents/Auth/Auth'
 import Login from '../../../comonents/Login/Login'
 import {connect} from 'react-redux'
 import ExitLogin from '../../ExitLogin/ExitLogin'
+import IconUser from '../../User/IconUser/IconUser'
 
 import imageLogo from '../../Footer/logo.png'
 
@@ -16,6 +17,8 @@ const links = [
     {to: '/articles', label: 'Статьи', exect: false},
     {to: '/contact', label: 'Контакты', exect: false},
 ];
+
+
 
 class MenuBar extends Component {
     state = {
@@ -55,20 +58,34 @@ class MenuBar extends Component {
                             </NavLink>
                         </div>
                         <div className={classes.BarRight}>
-                            <Auth 
-                                isOpen={this.state.auth}//если нажимаем на login значение меняется
-                                onClose={this.onLoginAuthHandler}
-                                />
-                            <Login
-                                onLogin={this.onLoginAuthHandler}
-                                isAuthenticated={this.props.isAuthenticated}
-                            />
-                            {this.props.isAuthenticated?
-                                <ExitLogin
-                                    isAuthenticated={this.props.isAuthenticated}>  
-                                </ExitLogin>
+                            
+                            {!this.props.isAuthenticated?
+                                <div>
+                                    <Auth 
+                                    isOpen={this.state.auth}//если нажимаем на login значение меняется
+                                    onClose={this.onLoginAuthHandler}
+                                    />
+                                    <Login
+                                    onLogin={this.onLoginAuthHandler}
+                                    isAuthenticated={this.props.isAuthenticated}
+                                    />
+                                </div>
                                 :null
                             }
+
+                            {this.props.isAuthenticated?
+                                <div>
+                                <IconUser
+                                    isAuthenticated={this.props.isAuthenticated}>  
+                                </IconUser>                                
+                                 <ExitLogin
+                                    isAuthenticated={this.props.isAuthenticated}>  
+                                </ExitLogin>
+                                </div>
+                                :null
+                            }
+                           
+                            
                             
                         </div>
                     </div>

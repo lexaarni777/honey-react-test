@@ -77,7 +77,8 @@ class Auth extends Component {
         this.props.auth(
             this.state.formControls.email.value,
             this.state.formControls.password.value,
-            false
+            false,
+            this.props.onClose
         )
     
     }

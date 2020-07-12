@@ -16,6 +16,7 @@ import Add from './conteiners/Add/Add';
 import AddArticles from './conteiners/AddArticles/AddArticles';
 import ActiveArticle from './conteiners/ActiveArticle/ActiveArticle'
 import Logout from './comonents/Logout/Logout';
+import UserList from './conteiners/UserList/UserList'
 
 
 class App extends Component {
@@ -53,6 +54,7 @@ componentDidMount(){
             <Route path='/contact' component={Contact}/>         
             <Route path='/about' component={About}/>
             <Route path='/logout' component={Logout}/>
+            <Route path='/UserList' component={UserList}/>
             <Route path='/' component={Main}/>
         </Switch>
       )

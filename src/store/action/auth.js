@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { AUTH_SUCCESS, AUTH_LOGOUT } from './actionType'
-
+import firebase from '../../firebase/Config'
+import UserList from '../../conteiners/UserList/UserList'
 
 export function auth(email, password, isLogin, onClose){
     return async dispatch => {
@@ -21,6 +22,8 @@ export function auth(email, password, isLogin, onClose){
         const data = response.data
 
         console.log('инфа пользователя response', response)
+        
+
 
         const expirationDate = new Date(new Date().getTime() + data.expiresIn *1000)
 
@@ -31,6 +34,22 @@ export function auth(email, password, isLogin, onClose){
         dispatch(authSuccess(data.idToken))
         dispatch(autoLogout(data.expiresIn))
 
+        
+
+        if(isLogin||response.status=='200'){
+
+            var UserRef = firebase.database().ref('users').push();
+            let key = UserRef.key
+
+            let user = {
+                email: data.email,
+                userKey: key
+            }
+           
+            UserRef.set(user);
+            console.log(key)
+
+        }
         if(!!localStorage.token){
             onClose()
         }

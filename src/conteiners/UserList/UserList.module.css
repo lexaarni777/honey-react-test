@@ -1,0 +1,14 @@
+.UserList{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.Container{
+    background-color: #fcb100;
+}
+
+.UserList .Description{
+    width: 960px;
+    margin: 0 auto;
+}

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {render} from 'react-dom'
-import {storage} from '../../firebase'
+import {storage} from '../../firebase/Config'
 import Botton from '../UI/Button/Button'
 import classes from './ImageUpload.module.css'
 import Progress from '../UI/Progress/Progress'
