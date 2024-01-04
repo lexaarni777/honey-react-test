@@ -17,6 +17,7 @@ import AddArticles from './conteiners/AddArticles/AddArticles';
 import ActiveArticle from './conteiners/ActiveArticle/ActiveArticle'
 import Logout from './comonents/Logout/Logout';
 import UserList from './conteiners/UserList/UserList'
+import Cart from './comonents/User/Cart/Cart';
 
 
 class App extends Component {
@@ -55,6 +56,7 @@ componentDidMount(){
             <Route path='/about' component={About}/>
             <Route path='/logout' component={Logout}/>
             <Route path='/UserList' component={UserList}/>
+            <Route path='/Cart' component={Cart}/>
             <Route path='/' component={Main}/>
         </Switch>
       )
@@ -64,6 +66,8 @@ componentDidMount(){
       <div className={classes.App}>
         <Layout>
           {routes}
+
+
         </Layout>
       </div>
     );
@@ -72,8 +76,10 @@ componentDidMount(){
 
 function mapStateToProps(state){
   return{
-    isAuthenticated: !!state.auth.token
+    isAuthenticated: !!state.auth.token,
+    userId: state.auth.userId
   }
+  
 }
 
 function mapDispatchToProps(dispatch){

@@ -3,56 +3,57 @@ import { AUTH_SUCCESS, AUTH_LOGOUT } from './actionType'
 import firebase from '../../firebase/Config'
 import UserList from '../../conteiners/UserList/UserList'
 
-export function auth(email, password, isLogin, onClose){
+export function auth(email, password, isLogin, onClose, userName){
     return async dispatch => {
             const authData = {
             email,
             password,
             returnSecureToken: true
         }
+        console.log(isLogin) 
 
-        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA4Q5_de3gsjL9Y9cQPOArEqm-n7v7hcN8'
+
+        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCAOnBMCHfjqhp84EqtzcJ61LUjxCy8zPQ'
 
         if(isLogin){
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA4Q5_de3gsjL9Y9cQPOArEqm-n7v7hcN8'
+            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCAOnBMCHfjqhp84EqtzcJ61LUjxCy8zPQ'
             
         }
         const response = await axios.post(url, authData)
 
         const data = response.data
-
-        console.log('инфа пользователя response', response)
-        
+  
 
 
         const expirationDate = new Date(new Date().getTime() + data.expiresIn *1000)
+
 
         localStorage.setItem('token', data.idToken)
         localStorage.setItem('userId', data.localId)
         localStorage.setItem('expirationDate', expirationDate)
 
-        dispatch(authSuccess(data.idToken))
-        dispatch(autoLogout(data.expiresIn))
-
+        
+        console.log(isLogin) 
         
 
         if(isLogin||response.status=='200'){
 
-            var UserRef = firebase.database().ref('users').push();
-            let key = UserRef.key
+            let UserRef = firebase.database().ref('users/' + localStorage.userId)
 
             let user = {
                 email: data.email,
-                userKey: key
-            }
-           
+                userName,
+                cart: {}
+            }     
+            console.log(user) 
             UserRef.set(user);
-            console.log(key)
 
         }
         if(!!localStorage.token){
             onClose()
         }
+        dispatch(authSuccess(data.idToken, localStorage.userId))
+        dispatch(autoLogout(data.expiresIn))
 
     }
 }
@@ -71,13 +72,14 @@ export function logout(){
     localStorage.removeItem('expirationDate')
 
     return {
-        type: AUTH_LOGOUT
+        type: AUTH_LOGOUT,
     }
 }
 
 export function autoLogin(){
     return dispatch => {
         const token = localStorage.getItem('token')
+        const userId =localStorage.getItem('userId')
         if(!token){
             dispatch(logout())
         }else{
@@ -85,16 +87,17 @@ export function autoLogin(){
             if(expirationDate <= new Date()){
                 dispatch(logout())
             }else{
-                dispatch(authSuccess(token))
+                dispatch(authSuccess(token, userId))
                 dispatch(autoLogout((expirationDate.getTime() - new Date().getTime()) / 1000))
             }
         }
     }
 }
 
-export function authSuccess(token){
+export function authSuccess(token, userId){
     return{
         type: AUTH_SUCCESS,
-        token
+        token,
+        userId
     }
 }

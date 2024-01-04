@@ -14,15 +14,19 @@
     padding: 0;    
     list-style: none;
     display: flex;
-    
     flex-wrap: wrap;
 
+}
+.Products .Conteiner .ProductsList li button{
+
+    margin: 0 auto;
 }
 
 .Products .Conteiner .ProductsList ul li{
     width: 240px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     padding-bottom: 15px;
 }
 
@@ -31,6 +35,8 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+    
+    margin-bottom: 15px;
 }
 
 .Products .Conteiner .ProductsList ul li a{

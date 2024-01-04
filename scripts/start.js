@@ -1,4 +1,6 @@
 'use strict';
+//const url = 'mongodb+srv://Lexaarni777:bzmjsHGjtgrFezBP@cluster0.bxidn.mongodb.net/<dbname>?retryWrites=true&w=majority'
+ //     await mongoose.connect(url, {useNewUrlParser: true})
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'development';

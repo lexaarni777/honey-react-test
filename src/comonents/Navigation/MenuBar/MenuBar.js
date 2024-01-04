@@ -3,9 +3,10 @@ import classes from './MenuBar.module.css';
 import {NavLink} from 'react-router-dom'
 import Auth from '../../../comonents/Auth/Auth'
 import Login from '../../../comonents/Login/Login'
-import {connect} from 'react-redux'
+
 import ExitLogin from '../../ExitLogin/ExitLogin'
 import IconUser from '../../User/IconUser/IconUser'
+import IconCart from '../../User/Cart/IconCart/IconCart';
 
 import imageLogo from '../../Footer/logo.png'
 
@@ -43,12 +44,14 @@ class MenuBar extends Component {
 
     onLoginAuthHandler = () => {
         this.setState({
-            auth: !this.state.auth
+            auth: !this.state.auth, 
         })
+
     }
 
     render(){
         return(
+            
             <header className={classes.MenuBar}>
                 <div className={classes.Container}>
                     <div className={classes.Auth}>
@@ -58,7 +61,6 @@ class MenuBar extends Component {
                             </NavLink>
                         </div>
                         <div className={classes.BarRight}>
-                            
                             {!this.props.isAuthenticated?
                                 <div>
                                     <Auth 
@@ -72,13 +74,21 @@ class MenuBar extends Component {
                                 </div>
                                 :null
                             }
-
+                            
                             {this.props.isAuthenticated?
+                            
                                 <div>
+                                    {console.log(this.props)
+                            }
                                 <IconUser
-                                    isAuthenticated={this.props.isAuthenticated}>  
-                                </IconUser>                                
-                                 <ExitLogin
+                                    isAuthenticated={this.props.isAuthenticated}
+                                    userId = {this.props.userId}>  
+                                </IconUser>
+                                <IconCart
+                                    isAuthenticated={this.props.isAuthenticated}
+                                    userId = {this.props.userId}>
+                                </IconCart>      
+                                <ExitLogin
                                     isAuthenticated={this.props.isAuthenticated}>  
                                 </ExitLogin>
                                 </div>
@@ -100,10 +110,6 @@ class MenuBar extends Component {
     };
 }
 
-function mapStateToProps(state){
-    return{
-        isAuthenticated: !!state.auth.token
-    }
-}
 
-export default connect(mapStateToProps)(MenuBar);
+
+export default MenuBar;

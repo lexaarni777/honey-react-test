@@ -2,18 +2,18 @@ import firebase from 'firebase'
 import 'firebase/storage'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA4Q5_de3gsjL9Y9cQPOArEqm-n7v7hcN8",
-    authDomain: "honey-9d267.firebaseapp.com",
-    databaseURL: "https://honey-9d267.firebaseio.com",
-    projectId: "honey-9d267",
-    storageBucket: "honey-9d267.appspot.com",
-    messagingSenderId: "637446227306",
-    appId: "1:637446227306:web:1fabbfc8eeff3f6bac9113"
+  databaseURL: "https://honey-react-default-rtdb.europe-west1.firebasedatabase.app",
+  
+  apiKey: "AIzaSyCAOnBMCHfjqhp84EqtzcJ61LUjxCy8zPQ",
+  authDomain: "honey-react.firebaseapp.com",
+  projectId: "honey-react",
+  storageBucket: "honey-react.appspot.com",
+  messagingSenderId: "264665378797",
+  appId: "1:264665378797:web:77e8aa945470adb5cb01e4"
   };
 
 firebase.initializeApp(firebaseConfig)
 
 const storage = firebase.storage()
-console.log(firebase)
 
 export {storage, firebase as default}

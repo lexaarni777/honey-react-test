@@ -13,6 +13,14 @@ const Input = props => {
     if(isInvalid(props)){
         cls.push(classes.invalid)
     }
+    if(props.onName){
+        if(props.onClickPropsRegister){
+        cls.push(classes.isVisibality)
+        }else{
+            cls.push(classes.isNotisVisibality)
+        }
+    
+    }
  
     return(
         <div className={cls.join(' ')}>

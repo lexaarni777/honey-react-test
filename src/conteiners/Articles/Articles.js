@@ -15,7 +15,12 @@ class Articles extends Component{
         return this.state.articles.map((article, index) => {
             return (
                 <li key={index}>
-                    <NavLink to={'/articles/'+ article.id}
+                    <NavLink to={{
+                        pathname:'/articles/'+ article.id,
+                        aboutProps:{
+                            id: article.id
+                           }
+                    }}
                     >
                     <h1>{article.name}</h1>
                     <img src={article.img} alt={article.name}/>

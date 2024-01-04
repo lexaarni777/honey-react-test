@@ -15,3 +15,9 @@
     font-size: 14px;
     color: rgb(255, 60, 0);
 }
+.isNotisVisibality{
+    display: none;
+}
+.isVisibality{
+    display: block;
+}

@@ -1,0 +1,11 @@
+.Register{
+    color: #3b312f;
+    cursor: pointer;
+}
+.Register p{
+    font-size: 14px;
+}
+.Button:hover {
+    color:#fcb100;
+    transition: .3s ease-in-out;
+}

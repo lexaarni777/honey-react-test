@@ -75,7 +75,7 @@ class Add extends Component{
     }
 
     submitHandler = event => {
-        event.preventDafault()
+        event.preventDefault()
     };
 
     changeHandler = (value, controlName) => {

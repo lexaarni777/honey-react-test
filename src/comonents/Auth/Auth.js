@@ -8,12 +8,14 @@ import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {auth} from '../../store/action/auth'
 import imageLogo from '../Footer/logo.png'
+import Register from '../UI/Register/Register'
 
 
 function createFormControls() {
     return{
             email: createFormControlsOther('Email'),
             password: createFormControlsOther('Пароль'),
+            userName: createFormControlsOther('Имя')
     }
 };
 
@@ -28,6 +30,7 @@ class Auth extends Component {
 
     state = {
         formControls: createFormControls(),
+        onClickPropsRegister: false
     };
 
     changeHandler = (value, controlName) => {
@@ -47,6 +50,23 @@ class Auth extends Component {
     renderInputs = () => {
         return Object.keys(this.state.formControls).map((controlName, index)=>{
             const control = this.state.formControls[controlName]
+           
+            if(index=='2'){
+                return(
+                    <Input
+                    key={controlName+index}
+                    onName={true}
+                    onClickPropsRegister={this.state.onClickPropsRegister}
+                    label={control.label}
+                    value={control.value}
+                    valid={control.valid}
+                    touched={control.touched}
+                    errorMassege={control.errorMassege}
+                    sholdValidate={!!control.validation}
+                    onChange={event => this.changeHandler(event.target.value, controlName)}
+                    />
+                )
+            }
 
             return(
                 <Input
@@ -69,7 +89,8 @@ class Auth extends Component {
             this.state.formControls.email.value,
             this.state.formControls.password.value,
             true,
-            this.props.onClose
+            this.props.onClose,
+            null
         )        
     }
 
@@ -78,9 +99,16 @@ class Auth extends Component {
             this.state.formControls.email.value,
             this.state.formControls.password.value,
             false,
-            this.props.onClose
+            this.props.onClose,
+            this.state.formControls.userName.value
         )
     
+    }
+
+    onClickPropsRegister = () => {
+        this.setState({
+            onClickPropsRegister: true
+        })
     }
 
     submitHendler = event => {
@@ -106,12 +134,27 @@ class Auth extends Component {
                     <p>Вход</p>
                     <form onSubmit={this.submitHendler}>
                     {this.renderInputs()}
-                    <Botton
+                        {!this.state.onClickPropsRegister
+                            ?<React.Fragment>
+                                <Botton
                         onClick={this.loginHendler}
                         >Войти</Botton>
-                    <Botton
-                        onClick={this.registerHendler}
-                        >Регистрация</Botton>
+                                <p className = {classes.pmin}>или</p>
+                                <Register
+                                onClickProps={this.onClickPropsRegister}
+                                >Пройти регистрацию</Register>
+                            </React.Fragment>
+                            :null
+                        }
+                        {this.state.onClickPropsRegister
+                            ?<Botton
+                            onClick={this.registerHendler}
+                            >Регистрация</Botton>
+                            :null
+                        }
+
+                        
+                        
                     </form>
                 </div>
                 
@@ -131,7 +174,7 @@ class Auth extends Component {
 
 function mapDispatchToProps(dispatch){
     return{
-        auth: (email, password, isLogin, onClose) => dispatch(auth(email, password, isLogin, onClose))
+        auth: (email, password, isLogin, onClose, userName) => dispatch(auth(email, password, isLogin, onClose, userName))
     }
 }
 

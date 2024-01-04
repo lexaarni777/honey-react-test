@@ -15,7 +15,7 @@ const Procress = props =>{
         <div className={cls.join(' ')}>
         {props.value < '100'
         ?<div><LoaderMin/></div>
-        :<i class="fa fa-check" aria-hidden="true"></i>
+        :<i className="fa fa-check" aria-hidden="true"></i>
         }
         </div> 
         
